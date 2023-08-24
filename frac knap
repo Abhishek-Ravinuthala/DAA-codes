@@ -1,0 +1,22 @@
+def frac_knap(items, capacity):
+    items.sort(key=lambda x : x[1]/x[0], reverse=True)
+    
+    
+    total_value = 0.0
+    remaining_capacity = capacity
+    for weight, profit in items:
+        if weight <= remaining_capacity:
+            total_value += profit
+            remaining_capacity -= weight
+            
+        else:
+            fraction = remaining_capacity/weight
+            total_value += fraction * profit
+            
+    print(total_value)
+    
+items = [(10, 60), (20, 100), (30, 120)]
+capacity = 50
+
+frac_knap(items, capacity)
+            
