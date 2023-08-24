@@ -1,32 +1,32 @@
 from collections import defaultdict
 
-def topological_sort(numVertices, edges):
-    
+def topological_sort(vertices, edges):
+    in_degree = [0] * vertices
     graph = defaultdict(list)
-    indegree=[0]*numVertices
-    for u,v in edges:
-        graph[u].append(v)
-        indegree[v] += 1
 
-    queue=[]
-    for i in range(numVertices):
-        if indegree[i]==0:
+    for u, v in edges:
+        graph[u].append(v)
+        in_degree[v] += 1
+
+    queue = []
+    for i in range(vertices):
+        if in_degree[i] == 0:
             queue.append(i)
 
-    result=[]
-   
+    result = []
     while queue:
-        x=queue.pop(0)
-        result.append(x)
+        vertex = queue.pop(0)
+        result.append(vertex)
 
-        for neighbour in graph[x]:
-          
-            indegree[neighbour] -= 1
-            if indegree[neighbour] == 0:
-                queue.append(neighbour)
+        for neighbor in graph[vertex]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
     return result
 
+# Example usage
 vertices = 6
 edges = [(5, 2), (5, 0), (4, 0), (4, 1), (2, 3), (3, 1)]
 
-print(topological_sort(vertices, edges))
+print("Topological Sorting:", topological_sort(vertices, edges))
