@@ -13,7 +13,7 @@ def bellman_ford(adj_matrix, start):
     return distances
 
 # Using adjacency matrix
-# Replace inf with a large value (e.g., float('inf')) for unreachable edges
+
 adj_matrix = [
     [0, -1, 4, float('inf'), float('inf')],
     [float('inf'), 0, 3, 2, 2],
@@ -22,6 +22,6 @@ adj_matrix = [
     [float('inf'), float('inf'), float('inf'), -3, 0]
 ]
 
-source_vertex = 0  # Corresponds to 'A' in the previous example
+
 distances = bellman_ford(adj_matrix, source_vertex)
 print(distances)
