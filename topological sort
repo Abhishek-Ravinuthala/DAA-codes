@@ -1,0 +1,32 @@
+from collections import defaultdict
+
+def topological_sort(numVertices, edges):
+    
+    graph = defaultdict(list)
+    indegree=[0]*numVertices
+    for u,v in edges:
+        graph[u].append(v)
+        indegree[v] += 1
+
+    queue=[]
+    for i in range(numVertices):
+        if indegree[i]==0:
+            queue.append(i)
+
+    result=[]
+   
+    while queue:
+        x=queue.pop(0)
+        result.append(x)
+
+        for neighbour in graph[x]:
+          
+            indegree[neighbour] -= 1
+            if indegree[neighbour] == 0:
+                queue.append(neighbour)
+    return result
+
+vertices = 6
+edges = [(5, 2), (5, 0), (4, 0), (4, 1), (2, 3), (3, 1)]
+
+print(topological_sort(vertices, edges))
