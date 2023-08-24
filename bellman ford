@@ -22,6 +22,7 @@ adj_matrix = [
     [float('inf'), float('inf'), float('inf'), -3, 0]
 ]
 
+source_vertex = 0
 
 distances = bellman_ford(adj_matrix, source_vertex)
 print(distances)
